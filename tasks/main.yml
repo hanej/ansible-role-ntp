@@ -9,6 +9,13 @@
     state: link
     force: yes
 
+- name: Set timezone in /etc/sysconfig/clock file.
+  template:
+    src: clock.j2
+    dest: /etc/sysconfig/clock
+    force: yes
+  when: ansible_os_family == 'RedHat'
+
 # Debian family OSes also have an /etc/timezone file.
 - name: Set timezone in /etc/timezone file.
   template:
